@@ -1,0 +1,40 @@
+<form class="row g-0 d-flex align-items-center" style="width: 86%;" (ngSubmit)="submit()" *ngIf="isSameQuestion()">
+  <app-fill-header></app-fill-header>
+  <div class=" border-0 rounded-0 d-grid">
+    <label class="btn mt-2 text-start" for="btn-check-outlined" *ngFor="let choice of getChoices(); index as i"
+      style="background-color: #e5ecf7; border: solid 1px #1350b4; margin-left: 32px;">
+      <div class="d-flex gap-2 justify-content-between align-items-center" #rankingChoice
+        id="{{choice.rankingDetailId}}">
+        <div class="input-group d-flex align-items-center">
+          <small class=" text-nowrap me-0">
+
+            <select class="" aria-label=".form-select-sm example"
+              style="border: 1px solid #a7bee3; background-color: white; color: #0445af; font-size: 12px;" #selectList
+              (change)="reorder(rankingChoice.id, selectList.value, getChoices())">
+
+              <option value="{{choice.rank}}" style="display: none;" [selected]="choice.rank" *ngIf="isChange">
+                {{choice.rank}}</option>
+              <option value="{{choice.rank}}" style="display: none;" *ngIf="!isChange">-</option>
+              <option *ngFor="let c of getChoices(); index as j" value="{{j+1}}">{{j+1}}</option>
+            </select>
+          </small>
+
+          <label class="form-control border-0 fs-6 bg-transparent ms-1 " type="text" placeholder="Enter answer"
+            aria-label=".form-control example" style=" border: 0; outline: 0; color: #1350b4;">{{choice.title}}</label>
+        </div>
+      </div>
+    </label>
+  </div>
+
+  <div class="mt-4 d-flex align-items-center" style="margin-left: 0px; width: fit-content;" *ngIf="!isLastQuestion()">
+    <button type="submit" class="btn fw-bold fs-5 py-1"
+      style="background-color: #1350b4; color: white; margin-left: 32px;">OK<i class="bi bi-check2 ms-2"></i></button>
+    <small class="ms-3">Press <span class="fw-bold">'OK'</span> to save your response.</small>
+  </div>
+  <div class="mt-4 d-flex align-items-center" style="margin-left: 0px; width: fit-content;" *ngIf="isLastQuestion()">
+    <button type="submit" class="btn fw-bold fs-5 py-1"
+      style="background-color: #1350b4; color: white; margin-left: 32px;">Submit<i
+        class="bi bi-check2 ms-2"></i></button>
+    <small class="ms-3">Press <span class="fw-bold">'Submit'</span> to end the test.</small>
+  </div>
+</form>

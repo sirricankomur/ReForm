@@ -1,0 +1,15 @@
+.main-content {
+  position: absolute;
+        left: 280px;
+        top: 0;
+        
+        z-index: 1;
+        background-color: transparent;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+   
+}
+
+.scrollarea {
+  overflow-y: auto;
+}

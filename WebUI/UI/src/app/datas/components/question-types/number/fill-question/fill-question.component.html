@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+    <path
+      d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+  </symbol>
+</svg>
+
+<form class="row g-0 d-flex align-items-center" style="width: 86%;" [formGroup]="formGroup" (ngSubmit)="submit()"
+  *ngIf="isSameQuestion()">
+  <app-fill-header></app-fill-header>
+  <div class="alert alert-primary d-flex align-items-center" style="margin-left: 32px;" role="alert"
+    *ngIf="getIsMinNumber() || getIsMaxNumber()">
+    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:">
+      <use xlink:href="#info-fill" />
+    </svg>
+    <div *ngIf="getIsMinNumber() && !getIsMaxNumber()">
+      Enter a number <span class="fw-bold">minimum of {{getMinNumber()}}</span>.
+    </div>
+    <div *ngIf="getIsMaxNumber() && !getIsMinNumber()">
+      Enter a number <span class="fw-bold">maximum of {{getMaxNumber()}}</span>.
+    </div>
+    <div *ngIf="getIsMinNumber() && getIsMaxNumber()">
+      Enter a number <span class="fw-bold">between {{getMinNumber()}}</span> and <span
+        class="fw-bold">{{getMaxNumber()}}</span>.
+    </div>
+  </div>
+  <div class="col-12" style="margin-left: 33px;">
+    <input type="number" formControlName="number" (change)="setNumber($event)"
+      class="form-control  fs-4 px-0 border-bottom border-primary rounded-0 bg-transparent" id="inputAddress"
+      placeholder="Enter number" style=" border: 0; outline: 0; color: #1350b4;">
+  </div>
+  <div class="mt-4 d-flex align-items-center" style="margin-left: 0px; width: fit-content;" *ngIf="!isLastQuestion()">
+    <button type="submit" class="btn fw-bold fs-5 py-1" [disabled]="!formGroup.valid"
+      style="background-color: #1350b4; color: white; margin-left: 32px;">OK<i class="bi bi-check2 ms-2"></i></button>
+    <small class="ms-3">Press <span class="fw-bold">'OK'</span> to save your response.</small>
+  </div>
+  <div class="mt-4 d-flex align-items-center" style="margin-left: 0px; width: fit-content;" *ngIf="isLastQuestion()">
+    <button type="submit" class="btn fw-bold fs-5 py-1" [disabled]="!formGroup.valid"
+      style="background-color: #1350b4; color: white; margin-left: 32px;">Submit<i
+        class="bi bi-check2 ms-2"></i></button>
+    <small class="ms-3">Press <span class="fw-bold">'Submit'</span> to end the test.</small>
+  </div>
+</form>

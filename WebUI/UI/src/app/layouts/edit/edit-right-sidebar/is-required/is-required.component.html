@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-9 mt-2"> <label class="form-check-label" for="flexSwitchCheckDefault"
+      style="font-size: 14px;">Required</label>
+  </div>
+  <div class="col-3 mt-2">
+    <div class="form-check form-switch d-flex gap-2 justify-content-end">
+      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" [checked]="isRequired"
+        #required (change)="setIsRequired(required.checked)" *ngIf="getIsRequired()" checked>
+      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" [checked]="isRequired"
+        #required (change)="setIsRequired(required.checked)" *ngIf="!getIsRequired()">
+    </div>
+  </div>
+</div>

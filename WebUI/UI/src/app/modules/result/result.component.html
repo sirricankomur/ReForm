@@ -1,0 +1,61 @@
+<div class="card m-4 p-5 rounded-3 shadow" style="top: 70px">
+    <h1 class="fs-3 text-center">Responses</h1>
+    <hr />
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered" *ngIf="isDataLoaded()">
+            <thead class="border-top-0 border-white">
+                <tr>
+                    <th scope="col" class="border-end">#</th>
+                    <th scope="col" class="fw-normal border-end" style="font-size: 12px;"
+                        *ngFor="let question of getQuestions()">
+                        <app-date-result *ngIf="questionTypesValidationService.isDateQuestion(question)">
+                        </app-date-result>
+                        <app-email-result *ngIf="questionTypesValidationService.isEmailQuestion(question)">
+                        </app-email-result>
+                        <app-multiple-choice-result
+                            *ngIf="questionTypesValidationService.isMultipleChoiceQuestion(question)">
+                        </app-multiple-choice-result>
+                        <app-number-result *ngIf="questionTypesValidationService.isNumberQuestion(question)">
+                        </app-number-result>
+                        <app-opinion-scale-result
+                            *ngIf="questionTypesValidationService.isOpinionScaleQuestion(question)">
+                        </app-opinion-scale-result>
+                        <app-phone-number-result *ngIf="questionTypesValidationService.isPhoneNumberQuestion(question)">
+                        </app-phone-number-result>
+                        <app-ranking-result *ngIf="questionTypesValidationService.isRankingQuestion(question)">
+                        </app-ranking-result>
+                        <app-rating-result *ngIf="questionTypesValidationService.isRatingQuestion(question)">
+                        </app-rating-result>
+                        <app-text-result *ngIf="questionTypesValidationService.isTextQuestion(question)">
+                        </app-text-result>
+                        <app-website-result *ngIf="questionTypesValidationService.isWebsiteQuestion(question)">
+                        </app-website-result>
+                        <app-yes-no-result *ngIf="questionTypesValidationService.isYesNoQuestion(question)">
+                        </app-yes-no-result>
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="table-light">
+                <tr *ngFor="let formUser of getFormUsers(); index as i">
+                    <th scope="row">{{i + 1}}</th>
+                    <td *ngFor="let response of getResponses(formUser.userId)">
+                        <span class="" *ngIf="!response.value">—</span>
+                        <span *ngIf="response.value">{{response.value}}</span>
+                        
+                    </td>
+                </tr>
+            </tbody>
+
+
+        </table>
+        <div class="text-center"  *ngIf="!isDataLoaded()">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="fw-bold">
+                Responses loading...
+            </div>
+        </div>
+
+    </div>
+</div>

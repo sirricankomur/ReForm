@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="trash" viewBox="0 0 16 16">
+        <path
+            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+        <path fill-rule="evenodd"
+            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+    </symbol>
+
+    <symbol id="edit" viewBox="0 0 16 16">
+        <path
+            d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+        <path fill-rule="evenodd"
+            d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+    </symbol>
+</svg>
+
+<div style="margin-left: 10%; margin-right: 10%;" >
+    <h1 class="display-6 mt-5 pt-4" style="font-size: 32px;">
+        Workspace
+    </h1>
+    <button routerLink="create" type="button" class="btn btn-sm btn-dark mt-1 d-flex align-items-center shadow">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-plus-lg me-2"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+                d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
+        </svg> Create new ReForm</button>
+    <hr class="mt-4 mb-2">
+    <div class="input-group mb-3">
+        <span class="input-group-text bg-white text-muted" id="basic-addon1"><i class="bi bi-search"></i></span>
+        <input type="text" [(ngModel)]="filterText" class="form-control" placeholder="Search ReForm" aria-label="Search"
+            aria-describedby="basic-addon1">
+    </div>
+    <div *ngIf="filterText">{{filterText}} searched.</div>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 g-3">
+        <div class="col " *ngFor="let form of getForms() | filter: filterText">
+            <a class="text-decoration-none link-dark pointer" style="cursor: pointer;">
+                <div class="card h-100 hover" style="border-radius: 10px; ">
+                    <div class="card-header bg-transparent border-0 px-0 pb-0 pt-1">
+                        <div class="dropdown float-end">
+                            <button class="btn btn-transparent" type="button"
+                                id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+                                    class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                                    <path
+                                        d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                                </svg>
+                            </button>
+                            <ul class="dropdown-menu mx-0 shadow mt-2" style="width: 220px; border-radius: 8px;">
+                                <li>
+                                    <a class="dropdown-item d-flex gap-2 align-items-center" (click)="rename(form)">
+                                        <svg class="bi" width="16" height="16">
+                                            <use xlink:href="#edit" />
+                                        </svg>
+                                        Rename
+                                    </a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <a class="dropdown-item dropdown-item-danger d-flex gap-2 align-items-center"
+                                        (click)="delete(form)">
+                                        <svg class="bi" width="16" height="16">
+                                            <use xlink:href="#trash" />
+                                        </svg>
+                                        Delete
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <div class="card-body position-relative pt-0 mb-3" (click)="goToForm(form)">
+
+                        <div class="mt-0 pt-0 mb-5 pb-5 px-0 mx-0">
+                            <h5 class="card-title text-center position-absolute top-50 start-50 translate-middle fs-6 "
+                                style="width: 80%; max-width: 80%;">
+                                {{form.name}}
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-white" style="border-radius: 0 0 10px 10px;">
+                        <div class="row row-cols-2">
+                            <div class="col text-center px-0 font-weight-bold text-muted" style="font-size: 13px">
+                                Questions
+                            </div>
+                            <div class="col text-center px-0 font-weight-bold text-muted" style="font-size: 13px">
+                                Responses
+                            </div>
+                            <div class="col text-center px-0 text-muted" style="font-size: 13px">{{form.questions.length}}</div>
+                            <div class="col text-center px-0 text-muted" style="font-size: 13px">{{form.formUsers.length}}</div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+    </div>
+</div>
+<!-- 
+<div class="vh-100 d-flex" *ngIf="!dataLoaded">
+    <div class="d-flex position-absolute top-50 start-50 translate-middle align-items-center">
+        <div class="spinner-border me-3 " role="status">
+
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <span class="fw-bold">Loading ReForms... Are you ready?</span>
+    </div>
+
+
+</div> -->

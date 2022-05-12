@@ -1,0 +1,19 @@
+<form class="row g-0 d-flex align-items-center" style="width: 86%;" (ngSubmit)="submit()" *ngIf="isSameQuestion()">
+  <app-fill-header></app-fill-header>
+  <div class="col-12" style="margin-left: 32px;">
+    <input type="url" (change)="setWebsite($event)" value="{{response.value}}"
+      class="form-control fs-4 px-0 border-bottom border-primary rounded-0 text-primary bg-transparent" id="website"
+      placeholder="https://" style=" border: 0; outline: 0">
+  </div>
+  <div class="mt-4 d-flex align-items-center" style="margin-left: 0px; width: fit-content;" *ngIf="!isLastQuestion()">
+    <button type="submit" class="btn fw-bold fs-5 py-1" [disabled]="!isValid()"
+      style="background-color: #1350b4; color: white; margin-left: 32px;">OK<i class="bi bi-check2 ms-2"></i></button>
+    <small class="ms-3">Press <span class="fw-bold">'OK'</span> to save your response.</small>
+  </div>
+  <div class="mt-4 d-flex align-items-center" style="margin-left: 0px; width: fit-content;" *ngIf="isLastQuestion()">
+    <button type="submit" class="btn fw-bold fs-5 py-1" [disabled]="!isValid()"
+      style="background-color: #1350b4; color: white; margin-left: 32px;">Submit<i
+        class="bi bi-check2 ms-2"></i></button>
+    <small class="ms-3">Press <span class="fw-bold">'Submit'</span> to end the test.</small>
+  </div>
+</form>

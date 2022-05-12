@@ -1,0 +1,25 @@
+
+.radio-toolbar input[type="radio"] {
+    display: none;
+  }
+  
+  .radio-toolbar label {
+    display: block;
+    background-color: #e5ecf7;
+    padding: 3px 10px;
+    text-align: center;
+    color: #0445af;
+    font-size: 20px;
+    border: 0.5px solid #5e87cc;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100px;
+    max-width: 100px;
+    height: 40px;
+    max-height: 40px;
+  }
+  
+  .radio-toolbar input[type="radio"]:checked+label {
+    background-color: #0445af;
+    color: #e6ecf7;
+  }

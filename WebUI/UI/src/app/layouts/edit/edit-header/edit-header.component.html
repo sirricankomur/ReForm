@@ -1,0 +1,19 @@
+<div class="col-12 d-flex align-items-center  input-group">
+    <span class="fw-bold fs-6" style="color: #1350b4">{{getEditedQuestion().questionOrder}}</span>
+    <i class="bi bi-arrow-bar-right me-2" style="color: #1350b4"></i>
+    <input *ngIf="getEditedQuestion().title == '...' || getEditedQuestion().title == ''"
+        class="form-control border-0 fs-4 d-grid p-0" type="text" placeholder="Enter question title"
+        aria-label=".form-control-lg example" style=" border: 0; outline: 0;" (change)="updateTitle($event)" />
+    <input *ngIf="getEditedQuestion().title != '...' && getEditedQuestion().title != ''"
+        class="form-control border-0 fs-4 d-grid p-0" type="text" value="{{getEditedQuestion().title}}"
+        aria-label=".form-control-lg example" style=" border: 0; outline: 0;" (change)="updateTitle($event)" />
+</div>
+
+<div class="col-12 input-group " style="margin-left: 32px;">
+    <input *ngIf="getEditedQuestion().description == ''" class="form-control border-0 d-grid p-0 fs-5" type="text"
+        placeholder="Description (optional)" aria-label=".form-control-lg example" style=" border: 0; outline: 0;"
+        (change)="updateDescription($event)" />
+    <input *ngIf="getEditedQuestion().description != ''" class="form-control border-0  d-grid p-0 fs-5" type="text"
+        value="{{getEditedQuestion().description}}" aria-label=".form-control-lg example"
+        style=" border: 0; outline: 0;" (change)="updateDescription($event)" />
+</div>

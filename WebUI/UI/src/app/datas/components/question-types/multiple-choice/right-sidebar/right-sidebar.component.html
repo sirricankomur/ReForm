@@ -1,0 +1,68 @@
+<div class="row">
+    <app-is-required></app-is-required>
+    <div class="col-9 mt-3"> <label class="form-check-label" for="flexSwitchCheckDefault"
+            style="font-size: 14px;">Multiple selection</label>
+    </div>
+    <div class="col-3 mt-3">
+        <div class="form-check form-switch d-flex gap-2 justify-content-end">
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"
+                [checked]="isMultipleSelection" #checkbox (change)="setMultipleSelection(checkbox.checked)"
+                *ngIf="getMultipleSelection()" checked>
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"
+                [checked]="isMultipleSelection" #checkbox (change)="setMultipleSelection(checkbox.checked)"
+                *ngIf="!getMultipleSelection()">
+        </div>
+    </div>
+    <div class="col-12 mt-2">
+        <div class="row g-1" *ngIf="getMultipleSelection()">
+            <div class="col">
+                <select class="form-select form-select-sm" #selectList
+                    (change)="setMultipleSelectionDetails(selectList.value)" aria-label=".form-select-sm example">
+                    <option value="Unlimited" *ngIf="getMultipleSelectionUnlimited()" selected>Unlimited</option>
+                    <option value="Unlimited" *ngIf="!getMultipleSelectionUnlimited()">Unlimited</option>
+                    <option value="Exact number" *ngIf="getMultipleSelectionExactNumber()" selected>Exact number
+                    </option>
+                    <option value="Exact number" *ngIf="!getMultipleSelectionExactNumber()">Exact number</option>
+                    <option value="Range" *ngIf="getMultipleSelectionRange()" selected>Range</option>
+                    <option value="Range" *ngIf="!getMultipleSelectionRange()">Range</option>
+                </select>
+            </div>
+
+            <div class="col-4" *ngIf="getMultipleSelectionExactNumber() && getExactNumber() != 0"><input min="1"
+                    max="{{getLength()}}" (change)="setExactNumber($event)" class="form-control form-control-sm"
+                    type="number" value="{{getExactNumber()}}" placeholder="0-6" aria-label=".form-control-sm example">
+            </div>
+            <div class="col-4" *ngIf="getMultipleSelectionExactNumber() && getExactNumber() == 0"><input min="1"
+                    max="{{getLength()}}" (change)="setExactNumber($event)" class="form-control form-control-sm"
+                    type="number" placeholder="0-6" aria-label=".form-control-sm example"></div>
+            <div class="col-3" *ngIf="getMultipleSelectionRange() && getMinRange() != 0"><input min="1"
+                    max="{{getLength()}}" (change)="setMinRange($event)" id="a" class="form-control form-control-sm"
+                    type="number" value="{{getMinRange()}}" placeholder="0-6" aria-label=".form-control-sm example">
+            </div>
+            <div class="col-3" *ngIf="getMultipleSelectionRange() && getMinRange() == 0"><input min="1"
+                    max="{{getLength()}}" (change)="setMinRange($event)" id="a" class="form-control form-control-sm"
+                    type="number" placeholder="0-6" aria-label=".form-control-sm example"></div>
+            <div class="col-3" *ngIf="getMultipleSelectionRange() && getMaxRange() != 0"><input min="1"
+                    max="{{getLength()}}" (change)="setMaxRange($event)" id="b" class="form-control form-control-sm"
+                    type="number" placeholder="0-6" aria-label=".form-control-sm example" value="{{getMaxRange()}}">
+            </div>
+            <div class="col-3" *ngIf="getMultipleSelectionRange() && getMaxRange() == 0"><input min="1"
+                    max="{{getLength()}}" (change)="setMaxRange($event)" id="b" class="form-control form-control-sm"
+                    type="number" placeholder="0-6" aria-label=".form-control-sm example"></div>
+        </div>
+
+    </div>
+    <div class="col-9 mt-2"> <label class="form-check-label" for="flexSwitchCheckDefault"
+            style="font-size: 14px;">"Other" option</label>
+    </div>
+    <div class="col-3 mt-2">
+        <div class="form-check form-switch d-flex gap-2 justify-content-end">
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"
+                [checked]="isOtherOption" #checkbox (change)="setOtherOption(checkbox.checked)" *ngIf="getOtherOption()"
+                checked>
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"
+                [checked]="isOtherOption" #checkbox (change)="setOtherOption(checkbox.checked)"
+                *ngIf="!getOtherOption()">
+        </div>
+    </div>
+</div>

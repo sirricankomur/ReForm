@@ -1,0 +1,112 @@
+<div class="d-flex flex-column align-items-stretch flex-shrink-0 py-3 vh-100 bg-white shadow"
+  style="width: 100%; max-width: 100%;">
+  <div class="row d-flex align-items-center justify-content-between mt-5 ps-3 pe-1 pb-3">
+    <div class="col-6 fw-bold" style="font-size: 14px">Content</div>
+    <div class="col-6 me-0">
+      <div class="dropdown dropend text-end">
+        <button class="btn btn-transparent" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+          aria-expanded="false">
+          <svg class="bi" width="24" height="24">
+            <use xlink:href="#plus-square" />
+          </svg>
+        </button>
+        <ul class="dropdown-menu shadow ms-2 border-0" aria-labelledby="dropdownMenuButton1"
+          style="border-radius: 10px;">
+          <h5 class="fs-6 ms-3">All Questions</h5>
+          <hr class="mt-0 mb-1" />
+          <li role="button">
+            <button (click)="createQuestion(1)" class="dropdown-item d-flex align-items-center"
+              style="font-size: 14px"><i class="bi bi-calendar-date-fill rounded-3 fs-6 me-1 px-1"
+                style="background-color: #85e0d6"></i>Date</button>
+          </li>
+          <li role="button">
+            <button (click)="createQuestion(2)" class="dropdown-item d-flex align-items-center"
+              style="font-size: 14px"><i class="bi bi-envelope-fill rounded-3 fs-6 me-1 px-1"
+                style="background-color: #379cfb"></i>Email
+            </button>
+          </li>
+          <li role="button">
+            <button (click)="createQuestion(3)" class="dropdown-item d-flex align-items-center"
+              style="font-size: 14px"><i class="bi bi-check2-square rounded-3 fs-6 me-1 px-1"
+                style="background-color: #d65c99"></i>Multiple
+              Choice
+            </button>
+          </li>
+          <li role="button">
+            <button (click)="createQuestion(4)" class="dropdown-item d-flex align-items-center"
+              style="font-size: 14px"><i class="bi bi-123 rounded-3 fs-6 me-1 px-1"
+                style="background-color: #5cd6c8"></i>Number
+            </button>
+          </li>
+          <li role="button">
+            <button (click)="createQuestion(5)" class="dropdown-item d-flex align-items-center"
+              style="font-size: 14px"><i class="bi bi-bar-chart-fill rounded-3 fs-6 me-1 px-1"
+                style="background-color: #fcda69"></i>Opinion
+              Scale
+            </button>
+          </li>
+          <li role="button">
+            <button (click)="createQuestion(6)" class="dropdown-item d-flex align-items-center"
+              style="font-size: 14px"><i class="bi bi-telephone-fill rounded-3 fs-6 me-1 px-1"
+                style="background-color: #adebe4"></i>Phone
+              Number
+            </button>
+          </li>
+          <li role="button">
+            <button (click)="createQuestion(7)" class="dropdown-item d-flex align-items-center"
+              style="font-size: 14px"><i class="bi bi-bar-chart-steps rounded-3 fs-6 me-1 px-1"
+                style="background-color: #ebadcc"></i>Ranking
+            </button>
+          </li>
+          <li role="button">
+            <button (click)="createQuestion(8)" class="dropdown-item d-flex align-items-center"
+              style="font-size: 14px"><i class="bi bi-star-half rounded-3 fs-6 me-1 px-1"
+                style="background-color: #fbce37"></i>Rating
+            </button>
+          </li>
+          <li role="button">
+            <button (click)="createQuestion(9)" class="dropdown-item d-flex align-items-center"
+              style="font-size: 14px"><i class="bi bi-pen-fill rounded-3 fs-6 me-1 px-1"
+                style="background-color: #69b5fc"></i>Text
+            </button>
+          </li>
+          <li>
+            <button (click)="createQuestion(10)" class="dropdown-item d-flex align-items-center"
+              style="font-size: 14px"><i class="bi bi-globe2 rounded-3 fs-6 me-1 px-1"
+                style="background-color: #379cfb"></i>Website
+            </button>
+          </li>
+          <li role="button">
+            <button (click)="createQuestion(11)" class="dropdown-item d-flex align-items-center"
+              style="font-size: 14px"><i class="bi bi-circle-half rounded-3 fs-6 me-1 px-1"
+                style="background-color: #e085b3"></i>Yes/No
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="list-group mx-0 border-0 rounded-0 scrollarea" *ngIf="getQuestions()">
+    <div *ngFor="let question of getQuestions()">
+      <app-date-left-sidebar *ngIf="questionTypesValidationService.isDateQuestion(question)"></app-date-left-sidebar>
+      <app-email-left-sidebar *ngIf="questionTypesValidationService.isEmailQuestion(question)"></app-email-left-sidebar>
+      <app-multiple-choice-left-sidebar *ngIf="questionTypesValidationService.isMultipleChoiceQuestion(question)">
+      </app-multiple-choice-left-sidebar>
+      <app-number-left-sidebar *ngIf="questionTypesValidationService.isNumberQuestion(question)">
+      </app-number-left-sidebar>
+      <app-opinion-scale-left-sidebar *ngIf="questionTypesValidationService.isOpinionScaleQuestion(question)">
+      </app-opinion-scale-left-sidebar>
+      <app-phone-number-left-sidebar *ngIf="questionTypesValidationService.isPhoneNumberQuestion(question)">
+      </app-phone-number-left-sidebar>
+      <app-ranking-left-sidebar *ngIf="questionTypesValidationService.isRankingQuestion(question)">
+      </app-ranking-left-sidebar>
+      <app-rating-left-sidebar *ngIf="questionTypesValidationService.isRatingQuestion(question)">
+      </app-rating-left-sidebar>
+      <app-text-left-sidebar *ngIf="questionTypesValidationService.isTextQuestion(question)"></app-text-left-sidebar>
+      <app-website-left-sidebar *ngIf="questionTypesValidationService.isWebsiteQuestion(question)">
+      </app-website-left-sidebar>
+      <app-yes-no-left-sidebar *ngIf="questionTypesValidationService.isYesNoQuestion(question)">
+      </app-yes-no-left-sidebar>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+<app-svg></app-svg>
+
+<div class="p-0 m-0 bg-light fixed-top">
+  <div class="bg-light m-0 p-0 " style=" max-width: 286px; min-width: 286px; margin-right: 20px;">
+    <app-form-create-left-sidebar></app-form-create-left-sidebar>
+  </div>
+  <div>
+    <app-form-create-navbar></app-form-create-navbar>
+  </div>
+  <div class=" bg-white card  shadow  border-0  scrollarea position-absolute top-50 start-50 translate-middle"
+    style="margin-top: 1rem; bottom: 5rem;  padding: 5%; border-radius: 26px; min-width: 54%; max-width: 54%; min-height: 70%;"  *ngIf="getQuestions()">
+      <app-edit-date-question *ngIf="questionTypesValidationService.isDateQuestion(getEditedQuestion())">
+      </app-edit-date-question>
+      <app-edit-email-question *ngIf="questionTypesValidationService.isEmailQuestion(getEditedQuestion())">
+      </app-edit-email-question>
+      <app-edit-multiple-choice-question
+        *ngIf="questionTypesValidationService.isMultipleChoiceQuestion(getEditedQuestion())">
+      </app-edit-multiple-choice-question>
+      <app-edit-number-question *ngIf="questionTypesValidationService.isNumberQuestion(getEditedQuestion())">
+      </app-edit-number-question>
+      <app-edit-opinion-scale-question *ngIf="questionTypesValidationService.isOpinionScaleQuestion(getEditedQuestion())">
+      </app-edit-opinion-scale-question>
+      <app-edit-phone-number-question *ngIf="questionTypesValidationService.isPhoneNumberQuestion(getEditedQuestion())">
+      </app-edit-phone-number-question>
+      <app-edit-ranking-question *ngIf="questionTypesValidationService.isRankingQuestion(getEditedQuestion())">
+      </app-edit-ranking-question>
+      <app-edit-rating-question *ngIf="questionTypesValidationService.isRatingQuestion(getEditedQuestion())">
+      </app-edit-rating-question>
+      <app-edit-website-question *ngIf="questionTypesValidationService.isWebsiteQuestion(getEditedQuestion())">
+      </app-edit-website-question>
+      <app-edit-text-question *ngIf="questionTypesValidationService.isTextQuestion(getEditedQuestion())">
+      </app-edit-text-question>
+      <app-edit-yes-no-question *ngIf="questionTypesValidationService.isYesNoQuestion(getEditedQuestion())">
+      </app-edit-yes-no-question>
+  </div>
+  <div class="bg-light m-0 p-0 vh-100 position-absolute top-0 end-0"
+    style="max-width: 286px; min-width: 286px; margin-left: 20px;">
+    <app-form-create-right-sidebar></app-form-create-right-sidebar>
+  </div>
+</div>

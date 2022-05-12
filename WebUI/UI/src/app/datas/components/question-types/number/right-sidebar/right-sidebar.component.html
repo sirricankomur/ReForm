@@ -1,0 +1,46 @@
+<div class="row">
+    <app-is-required></app-is-required>
+
+    <div class="col-9 mt-3"> <label class="form-check-label" for="flexSwitchCheckDefault" style="font-size: 14px;">Min
+            number</label>
+    </div>
+    <div class="col-3 mt-3">
+        <div class="form-check form-switch d-flex gap-2 justify-content-end">
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"
+                [checked]="isMinNumber" #checkboxMin (change)="setIsMinNumber(checkboxMin.checked)"
+                *ngIf="getIsMinNumber()" checked>
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"
+                [checked]="isMinNumber" #checkboxMin (change)="setIsMinNumber(checkboxMin.checked)"
+                *ngIf="!getIsMinNumber()">
+        </div>
+    </div>
+    <div class="col-12 mt-2" *ngIf="getIsMinNumber() && getMinNumber() == 0">
+        <input class="form-control form-control-sm" type="number" placeholder="0-999999999" min="1" max="2147483646"
+            (change)="setMinNumber($event)" aria-label=".form-control-sm example">
+    </div>
+    <div class="col-12 mt-2" *ngIf="getIsMinNumber() && getMinNumber() != 0">
+        <input class="form-control form-control-sm" type="number" value="{{getMinNumber()}}" placeholder="0-999999999" min="1" max="2147483646"
+            (change)="setMinNumber($event)" aria-label=".form-control-sm example">
+    </div>
+    <div class="col-9 mt-3"> <label class="form-check-label" for="flexSwitchCheckDefault" style="font-size: 14px;">Max
+            number</label>
+    </div>
+    <div class="col-3 mt-3">
+        <div class="form-check form-switch d-flex gap-2 justify-content-end">
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" min="1" max="2147483646"
+                [checked]="isMaxNumber" #checkboxMax (change)="setIsMaxNumber(checkboxMax.checked)"
+                *ngIf="getIsMaxNumber()" checked>
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" min="1" max="2147483646"
+                [checked]="isMaxNumber" #checkboxMax (change)="setIsMaxNumber(checkboxMax.checked)"
+                *ngIf="!getIsMaxNumber()">
+        </div>
+    </div>
+    <div class="col-12 mt-2" *ngIf="getIsMaxNumber() && getMaxNumber() == 0">
+        <input class="form-control form-control-sm" type="number" placeholder="0-999999999" min="1" max="2147483646"
+            (change)="setMaxNumber($event)" aria-label=".form-control-sm example">
+    </div>
+    <div class="col-12 mt-2" *ngIf="getIsMaxNumber() && getMaxNumber() != 0">
+        <input class="form-control form-control-sm" type="number" value="{{getMaxNumber()}}" placeholder="0-999999999" min="1" max="2147483646"
+            (change)="setMaxNumber($event)" aria-label=".form-control-sm example">
+    </div>
+</div>

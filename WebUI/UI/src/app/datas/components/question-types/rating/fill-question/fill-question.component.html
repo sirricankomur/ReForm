@@ -1,0 +1,48 @@
+<form class="row g-0 d-flex align-items-center" style="width: 86%;" [formGroup]="formGroup"  (ngSubmit)="submit()" *ngIf="isSameQuestion()">
+  <app-fill-header></app-fill-header>
+  <div class="mt-3">
+    <ul class="rate-area">
+      <input *ngIf="getRatingLength() >= 1" type="radio" id="radio1" value="1" formControlName="rate"
+        (change)="setRate($event)">
+      <label *ngIf="getRatingLength() >= 1" for="radio1">1</label>
+      <input *ngIf="getRatingLength() >= 2" type="radio" id="radio2" value="2" formControlName="rate"
+        (change)="setRate($event)">
+      <label *ngIf="getRatingLength() >= 2" for="radio2">2</label>
+      <input *ngIf="getRatingLength() >= 3" type="radio" id="radio3" value="3" formControlName="rate"
+        (change)="setRate($event)">
+      <label *ngIf="getRatingLength() >= 3" for="radio3">3</label>
+      <input *ngIf="getRatingLength() >= 4" type="radio" id="radio4" value="4" formControlName="rate"
+        (change)="setRate($event)">
+      <label *ngIf="getRatingLength() >= 4" for="radio4">4</label>
+      <input *ngIf="getRatingLength() >= 5" type="radio" id="radio5" value="5" formControlName="rate"
+        (change)="setRate($event)">
+      <label *ngIf="getRatingLength() >= 5" for="radio5">5</label>
+      <input *ngIf="getRatingLength() >= 6" type="radio" id="radio6" value="6" formControlName="rate"
+        (change)="setRate($event)">
+      <label *ngIf="getRatingLength() >= 6" for="radio6">6</label>
+      <input *ngIf="getRatingLength() >= 7" type="radio" id="radio7" value="7" formControlName="rate"
+        (change)="setRate($event)">
+      <label *ngIf="getRatingLength() >= 7" for="radio7">7</label>
+      <input *ngIf="getRatingLength() >= 8" type="radio" id="radio8" value="8" formControlName="rate"
+        (change)="setRate($event)">
+      <label *ngIf="getRatingLength() >= 8" for="radio8">8</label>
+      <input *ngIf="getRatingLength() >= 9" type="radio" id="radio9" value="9" formControlName="rate"
+        (change)="setRate($event)">
+      <label *ngIf="getRatingLength() >= 9" for="radio9">9</label>
+      <input *ngIf="getRatingLength() >= 10" type="radio" id="radio10" value="10" formControlName="rate"
+        (change)="setRate($event)">
+      <label *ngIf="getRatingLength() >= 10" for="radio10" class="px-1">10</label>
+    </ul>
+  </div>
+
+  <div class="mt-4 d-flex align-items-center" style="margin-left: 0px; width: fit-content;" *ngIf="!isLastQuestion()">
+    <button type="submit" class="btn fw-bold fs-5 py-1 " [disabled]="!formGroup.valid"
+      style="background-color: #1350b4; color: white; margin-left: 32px;">OK<i class="bi bi-check2 ms-2"></i></button>
+    <small class="ms-3">Press <span class="fw-bold">'OK'</span> to save your response.</small>
+  </div>
+  <div class="mt-4 d-flex align-items-center" style="margin-left: 0px; width: fit-content;" *ngIf="isLastQuestion()">
+    <button type="submit" class="btn fw-bold fs-5 py-1 " [disabled]="!formGroup.valid"
+      style="background-color: #1350b4; color: white; margin-left: 32px;">Submit<i class="bi bi-check2 ms-2"></i></button>
+      <small class="ms-3">Press <span class="fw-bold">'Submit'</span> to end the test.</small>
+  </div>
+</form>

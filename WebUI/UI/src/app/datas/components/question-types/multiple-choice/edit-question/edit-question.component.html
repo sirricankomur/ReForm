@@ -1,0 +1,50 @@
+<form class="row g-0 d-flex align-items-center" #question id="{{getEditedQuestion().id}}">
+  <app-edit-header></app-edit-header>
+  <div class="mt-3" style="width: 100%;">
+    <div *ngFor="let choice of getChoices()">  
+    <label class="btn mt-3 text-start d-block" for="btn-check-outlined" *ngIf="choice.choiceOrder != 0"
+      style="background-color: #e5ecf7; border: solid 1px #1350b4; margin-left: 32px;">
+      <div class="d-flex gap-2 justify-content-between align-items-center" #multipleChoice
+        id="{{choice.multipleChoiceDetailId}}" style="width: 100%;">
+
+        <div class="input-group d-flex align-items-center">
+          <label class="fw-bold px-1 rounded-0 d-flex align-items-center justify-content-center" for=""
+            style="border: 1px solid #94b0dd; background-color: white; color: #1350b4; font-size: 14px; width: 24px; height: 24px;">{{getLetter(choice.choiceOrder)}}</label>
+
+          <input *ngIf="choice.title == '...' || choice.title == ''"
+            class="form-control border-0 fs-6 bg-transparent ms-2 px-0" type="text" placeholder="Enter answer"
+            aria-label=".form-control example"
+            style=" border: 0; outline: 0; color: #1350b4; width: 92%; max-width: 92%;"
+            (change)="updateChoiceTitle(multipleChoice.id, $event)" />
+
+          <input *ngIf="choice.title != '...' && choice.title != ''"
+            class="form-control border-0 fs-6 bg-transparent ms-2 px-0" type="text" value="{{choice.title}}"
+            aria-label=".form-control example"
+            style=" border: 0; outline: 0; color: #1350b4; width: 92%; max-width: 92%;"
+            (change)="updateChoiceTitle(multipleChoice.id, $event)" />
+        </div>
+        <div>
+          <button class="btn bg-transparent m-0 p-0" (click)="delete(multipleChoice.id)">
+            <i class="bi bi-x-circle-fill"></i>
+          </button>
+        </div>
+      </div>
+    </label>
+  </div>
+    <label class="btn mt-3 text-start d-block" for="btn-check-outlined" *ngIf="getIsOtherOption()"
+      style="background-color: #e5ecf7; border: solid 1px #1350b4; margin-left: 32px;">
+      <div class="d-flex gap-2 justify-content-between align-items-center" id="other" style="width: 100%;">
+        <div class="input-group d-flex align-items-center">
+          <label class="fw-bold px-1 rounded-0 d-flex align-items-center justify-content-center" for=""
+            style="border: 1px solid #94b0dd; background-color: white; color: #1350b4; font-size: 14px; width: 24px; height: 24px;">{{getOtherLetter()}}</label>
+          <label class="form-control border-0 fs-6 bg-transparent ms-2 px-0"
+            style=" border: 0; outline: 0; color: #1350b4; width: 92%; max-width: 92%;">Other</label>
+        </div>
+      </div>
+    </label>
+    <br>
+    <button type="button" class="btn btn-dark mt-4" style="max-width: 150px; margin-left: 32px;"
+      (click)="addChoice(question.id)"><i class="bi bi-plus-lg me-2"></i>Add
+      choice</button>
+  </div>
+</form>

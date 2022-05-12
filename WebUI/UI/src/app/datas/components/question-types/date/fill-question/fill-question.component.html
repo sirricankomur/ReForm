@@ -1,0 +1,20 @@
+<form class="row g-0 d-flex align-items-center" style="width: 86%;" [formGroup]="formGroup" (ngSubmit)="submit()"
+  *ngIf="isSameQuestion()">
+  <app-fill-header></app-fill-header>
+  <div>
+    <input type="date" formControlName="date" (change)="setDate($event)"
+      class="form-control fs-2 px-0 border-bottom border-primary rounded-0 bg-transparent  d-inline mb-1"
+      style=" border: 0; outline: 0; margin-left: 32px; width: fit-content; color: #1350b4;">
+  </div>
+  <div class="mt-4 d-flex align-items-center" style="margin-left: 0px; width: fit-content;" *ngIf="!isLastQuestion()">
+    <button type="submit" class="btn fw-bold fs-5 py-1" [disabled]="!formGroup.valid"
+      style="background-color: #1350b4; color: white; margin-left: 32px;">OK<i class="bi bi-check2 ms-2"></i></button>
+    <small class="ms-3">Press <span class="fw-bold">'OK'</span> to save your response.</small>
+  </div>
+  <div class="mt-4 d-flex align-items-center" style="margin-left: 0px; width: fit-content;" *ngIf="isLastQuestion()">
+    <button type="submit" class="btn fw-bold fs-5 py-1" [disabled]="!formGroup.valid"
+      style="background-color: #1350b4; color: white; margin-left: 32px;">Submit<i
+        class="bi bi-check2 ms-2"></i></button>
+    <small class="ms-3">Press <span class="fw-bold">'Submit'</span> to end the test.</small>
+  </div>
+</form>

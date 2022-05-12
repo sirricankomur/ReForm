@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+    <path
+      d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+  </symbol>
+</svg>
+<form class="row g-0 d-flex align-items-center" style="width: 86%;" (ngSubmit)="submit()"  *ngIf="isSameQuestion()">
+  <app-fill-header></app-fill-header>
+  <div class="alert alert-primary d-flex align-items-center" style="margin-left: 32px;" role="alert"
+    *ngIf="getIsMultipleSelection()">
+    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:">
+      <use xlink:href="#info-fill" />
+    </svg>
+    <div *ngIf="getIsMultipleSelectionUnlimited() && !getIsMultipleSelectionExactNumber() && !getIsMultipleSelectionRange()">
+      Choose as many as you like.
+    </div>
+    <div *ngIf="!getIsMultipleSelectionUnlimited() && getIsMultipleSelectionExactNumber() && !getIsMultipleSelectionRange()">
+      Choose <span class="fw-bold">{{getMultipleSelectionExactNumber()}}</span>.    
+    </div>
+    <div *ngIf="!getIsMultipleSelectionUnlimited() && !getIsMultipleSelectionExactNumber() && getIsMultipleSelectionRange()">
+      <div *ngIf="getMultipleSelectionMinRange() || getMultipleSelectionMaxRange()">
+        
+        <div *ngIf="getMultipleSelectionMinRange() == getMultipleSelectionMaxRange()">
+          Choose <span class="fw-bold">{{getMultipleSelectionMaxRange()}}</span>.
+        </div>
+        <div *ngIf="getMultipleSelectionMinRange() < getMultipleSelectionMaxRange()">
+          Make <span class="fw-bold">between {{getMultipleSelectionMinRange()}}</span> and <span
+          class="fw-bold">{{getMultipleSelectionMaxRange()}}</span> choices.
+        </div>
+      </div>
+     
+    </div>
+  </div>
+  <div class="radio-toolbar mt-3" style="margin-left: 32px;">
+    <div *ngFor="let choice of getChoices(); index as i">
+      
+      <div class="form-check mb-2 px-0" *ngIf="choice.choiceOrder != 0" #mc id="{{choice.multipleChoiceDetailId}}" (click)="setChoice(mc.id)">
+        <input class="form-check-input" type="checkbox" id="{{i}}" name="{{i}}" [checked]="select(mc.id)"
+          >
+        <label class="form-check-label me-2 text-start align-items-center d-flex py-2" style="height: fit-content;"
+          for="{{i}}">
+          <label class="fw-bold px-0 me-2 rounded-0 d-flex align-items-center justify-content-center bg-white"
+            style="width: 26px; min-width: 26px; max-width: 26px; height: 26px; min-height: 26px; max-height: 26px; font-size: 14px;">{{getLetter(choice.choiceOrder)}}</label>{{choice.title}}
+        </label>
+      </div>
+    </div>
+    <div class="form-check px-0"  *ngIf="filledQuestionSettings.isOtherOption" >
+     
+      <input class="form-check-input"type="checkbox" id="{{getChoices()[0].multipleChoiceDetailId}}" #ot
+        [checked]="select(ot.id)" (change)="setChoice(ot.id)">
+      <label class="form-check-label me-2 text-start align-items-center d-flex py-2" style="height: fit-content;"
+        for="{{getChoices()[0].multipleChoiceDetailId}}">
+        <label class="fw-bold px-0 me-2 rounded-0 d-flex align-items-center justify-content-center bg-white"
+          style="width: 26px; height: 26px; font-size: 14px;">{{getOtherLetter()}}</label>Other
+      </label>
+    </div>
+  </div>
+  <br />
+  <div class="mt-4 me-2 d-flex align-items-center" style="margin-left: 32px; width: fit-content;">
+    <button type="button" class="btn fs-5 py-1 " [disabled]="!isValid()" style="border-color: #1350b4; color: #1350b4;"
+      (click)="reset()">Reset<i class="bi bi-x-lg fw-bold ms-2"></i></button>
+  </div>
+  <div class="mt-4 d-flex align-items-center" style="width: fit-content;" *ngIf="!isLastQuestion()">
+    <button type="submit" class="btn fw-bold fs-5 py-1" [disabled]="!isValid()"
+      style="background-color: #1350b4; color: white;">OK<i class="bi bi-check2 ms-2"></i></button>
+    <small class="ms-3">Press <span class="fw-bold">'OK'</span> to save your response.</small>
+  </div>
+  <div class="mt-4 d-flex align-items-center" style="width: fit-content;" *ngIf="isLastQuestion()">
+    <button type="submit" class="btn fw-bold fs-5 py-1" [disabled]="!isValid()"
+      style="background-color: #1350b4; color: white;">Submit<i class="bi bi-check2 ms-2"></i></button>
+    <small class="ms-3">Press <span class="fw-bold">'Submit'</span> to end the test.</small>
+  </div>
+</form>

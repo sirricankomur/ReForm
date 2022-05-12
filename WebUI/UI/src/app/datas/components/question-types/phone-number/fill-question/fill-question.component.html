@@ -1,0 +1,23 @@
+<form class="row g-0 d-flex align-items-center" style="width: 86%;" [formGroup]="formGroup" (ngSubmit)="submit()"
+  *ngIf="isSameQuestion()">
+  <app-fill-header></app-fill-header>
+  <div class="col-12 input-group" style="margin-left: 32px;">
+    <span class="input-group-text fw-bold fs-4 border-bottom border-primary border-0 bg-transparent"
+      id="basic-addon1">+90</span>
+    <input type="text" maxlength="16" formControlName="phoneNumber" (change)="setPhoneNumber($event)"
+      class="form-control  fs-4 px-0 border-bottom border-primary rounded-0 bg-transparent fw-bold" id="phone"
+      placeholder="XXX XXXXXXX" style=" border: 0; outline: 0; color: #1350b4;">
+  </div>
+
+  <div class="mt-4 d-flex align-items-center" style="margin-left: 0px; width: fit-content;" *ngIf="!isLastQuestion()">
+    <button type="submit" class="btn fw-bold fs-5 py-1" [disabled]="!formGroup.valid"
+      style="background-color: #1350b4; color: white; margin-left: 32px;">OK<i class="bi bi-check2 ms-2"></i></button>
+    <small class="ms-3">Press <span class="fw-bold">'OK'</span> to save your response.</small>
+  </div>
+  <div class="mt-4 d-flex align-items-center" style="margin-left: 0px; width: fit-content;" *ngIf="isLastQuestion()">
+    <button type="submit" class="btn fw-bold fs-5 py-1" [disabled]="!formGroup.valid"
+      style="background-color: #1350b4; color: white; margin-left: 32px;">Submit<i
+        class="bi bi-check2 ms-2"></i></button>
+    <small class="ms-3">Press <span class="fw-bold">'Submit'</span> to end the test.</small>
+  </div>
+</form>

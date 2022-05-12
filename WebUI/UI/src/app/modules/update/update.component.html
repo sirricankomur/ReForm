@@ -1,0 +1,25 @@
+<h1 class="fs-3 text-white" style="padding-top: 16px;"><i class="bi bi-people me-1"></i><span>Update User</span></h1>
+
+<form class="row g-3 text-white mx-auto mt-auto" style="width: 800px;">
+  <div class="col-md-6">
+    <label for="inputFirstName" class="form-label">First Name</label>
+    <input type="text" class="form-control bg-transparent text-white" id="inputFirstName" value="{{user.firstName}}" (change)="setFirstName($event)">
+  </div>
+  <div class="col-md-6">
+    <label for="inputLastName" class="form-label">Last Name</label>
+    <input type="text" class="form-control bg-transparent text-white" id="inputLastName"  value="{{user.lastName}}" (change)="setLastName($event)">
+  </div>
+  <div class="col-12">
+    <label for="inputEmail" class="form-label">Email</label>
+    <input type="text" class="form-control bg-transparent text-white" id="inputEmail" value="{{user.email}}" (change)="setEmail($event)">
+  </div>
+
+  <div class="col-12">
+    <div class="form-check form-switch">
+    <label class="form-check-label" for="flexSwitchCheckDefault">Status</label>
+    <input class="form-check-input " type="checkbox" role="switch" id="flexSwitchCheckDefault" [checked]="user.status" (change)="setStatus(st.checked)" #st>
+  </div></div>
+  <div class="col-12 d-grid">
+    <button type="button" class="btn btn-primary btn-fluid"  (click)="update(user)">Update</button>
+  </div>
+</form>

@@ -1,0 +1,53 @@
+<form class="row g-0 d-flex align-items-center vertical-center">
+  <app-edit-header></app-edit-header>
+  <div class="radio-toolbar dlex mt-4" style="margin-left: 7px; ">
+    <div class="div1" *ngIf="getMinScale() == 0"><input type="radio" id="radio0" name="radios" value="0" disabled>
+      <label for="radio0">0</label>
+    </div>
+    <div class="div1"><input type="radio" id="radio1" name="radios" value="1" disabled>
+      <label for="radio1">1</label>
+    </div>
+    <div class="div1"><input type="radio" id="radio2" name="radios" value="2" disabled>
+      <label for="radio2">2</label>
+    </div>
+    <div class="div1"> <input type="radio" id="radio3" name="radios" value="3" disabled>
+      <label for="radio3">3</label>
+    </div>
+    <div class="div1"><input type="radio" id="radio4" name="radios" value="4" disabled>
+      <label for="radio4">4</label>
+    </div>
+    <div class="div1" *ngIf="getMaxScale() >= 5"> <input type="radio" id="radio5" name="radios" value="5" disabled>
+      <label for="radio5">5</label>
+    </div>
+    <div class="div1" *ngIf="getMaxScale() >= 6"><input type="radio" id="radio6" name="radios" value="6" disabled>
+      <label for="radio6">6</label>
+    </div>
+    <div class="div1" *ngIf="getMaxScale() >= 7"><input type="radio" id="radio7" name="radios" value="7" disabled>
+      <label for="radio7">7</label>
+    </div>
+    <div class="div1" *ngIf="getMaxScale() >= 8"> <input type="radio" id="radio8" name="radios" value="8" disabled>
+      <label for="radio8">8</label>
+    </div>
+    <div class="div1" *ngIf="getMaxScale() >= 9"> <input type="radio" id="radio9" name="radios" value="9" disabled>
+      <label for="radio9">9</label>
+    </div>
+    <div class="div1" *ngIf="getMaxScale() == 10"><input type="radio" id="radio10" name="radios" value="10" disabled>
+      <label for="radio10" class="px-1">10</label>
+    </div>
+  </div>
+  <div class="row" style="color: #0445af; width: 90%; margin-left: 7px; padding: 1rem;">
+    <div class="col-4 text-start">
+      {{getBeginningLabel()}}
+    </div>
+    <div class="col-4 text-center">
+      {{getMiddleLabel()}}
+    </div>
+    <div class="col-4 text-end pe-0">
+      {{getEndLabel()}}
+    </div>
+  </div>
+  <div class="col-3 mt-2" style="margin-left: 0px;">
+    <button type="button" class="btn fw-bold fs-5 py-1 mt-2"
+      style="background-color: #1350b4; color: white; margin-left: 30px;">OK<i class="bi bi-check2 ms-2"></i></button>
+  </div>
+</form>

@@ -1,0 +1,94 @@
+<div class="card bg-transparent border rounded-3 position-relative vh-100"
+    *ngIf="dataLoaded && !isSubmit() && !getIsCompleted()">
+    <div class="progress" style="height: 5px">
+        <div class="progress-bar" role="progressbar" [style.width.%]="progressPercentage" style="background-color: #0445af"  [attr.aria-valuenow]="questionOrder"
+            aria-valuemin="0" [attr.aria-valuemax]="questionNumber"></div>
+    </div>
+    <div class="card-body bg-white">
+        <div class="position-absolute top-50 start-50 translate-middle" style="width: 60%;  margin-bottom: 55px;">
+
+            <app-fill-date-question *ngIf="questionTypesValidationService.isDateQuestion(getFilledQuestion())">
+            </app-fill-date-question>
+            <app-fill-email-question *ngIf="questionTypesValidationService.isEmailQuestion(getFilledQuestion())">
+            </app-fill-email-question>
+            <app-fill-multiple-choice-question
+                *ngIf="questionTypesValidationService.isMultipleChoiceQuestion(getFilledQuestion())">
+            </app-fill-multiple-choice-question>
+            <app-fill-number-question *ngIf="questionTypesValidationService.isNumberQuestion(getFilledQuestion())">
+            </app-fill-number-question>
+            <app-fill-opinion-scale-question
+                *ngIf="questionTypesValidationService.isOpinionScaleQuestion(getFilledQuestion())">
+            </app-fill-opinion-scale-question>
+            <app-fill-phone-number-question
+                *ngIf="questionTypesValidationService.isPhoneNumberQuestion(getFilledQuestion())">
+            </app-fill-phone-number-question>
+            <app-fill-ranking-question *ngIf="questionTypesValidationService.isRankingQuestion(getFilledQuestion())">
+            </app-fill-ranking-question>
+            <app-fill-rating-question *ngIf="questionTypesValidationService.isRatingQuestion(getFilledQuestion())">
+            </app-fill-rating-question>
+            <app-fill-website-question *ngIf="questionTypesValidationService.isWebsiteQuestion(getFilledQuestion())">
+            </app-fill-website-question>
+            <app-fill-text-question *ngIf="questionTypesValidationService.isTextQuestion(getFilledQuestion())">
+            </app-fill-text-question>
+            <app-fill-yes-no-question *ngIf="questionTypesValidationService.isYesNoQuestion(getFilledQuestion())">
+            </app-fill-yes-no-question>
+        </div>
+        <div class="btn-toolbar position-absolute bottom-0 end-0 me-5 mb-4" role="toolbar"
+            aria-label="Toolbar with button groups">
+            <div class="btn-group me-2" role="group" aria-label="First group">
+                <button type="button" class="btn btn-dark p-0 m-0" (click)="prev()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                        class="bi bi-arrow-left-short" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z" />
+                    </svg>
+                </button>
+                <button type="button" class="btn btn-sm btn-dark  p-0 m-0" (click)="next()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                        class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+                    </svg>
+
+                </button>
+            </div>
+            <div class="btn-group me-2" role="group" aria-label="Second group">
+                <button type="button" class="btn btn-sm btn-dark px-3">
+                    Powered by <strong>ReForm</strong>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row d-flex position-absolute top-50 start-50 translate-middle text-center"
+    *ngIf="!dataLoaded && !getIsCompleted()">
+    <div class="col-12">
+        <h1 class="display-5 fw-bold">ReForm</h1>
+    </div>
+    <div class="col-12 mt-2"><button type="button" class="btn btn-lg btn-outline-dark btn-lg px-4"
+            (click)="ngOnInit()">Start<i class="bi bi-arrow-right ms-3"></i></button></div>
+</div>
+
+<div class="row d-flex position-absolute top-50 start-50 translate-middle text-center"
+    *ngIf="isSubmit() && !getIsCompleted()">
+    <div class="col-12 p-0" style="height: 100px;"><i class="bi bi-check-circle text-success"
+            style="font-size: 80px;"></i></div>
+    <div class="col-12 mt-3 p-0">
+        <h1 class="display-4 fw-bold">The form is complete.</h1>
+    </div>
+    <div class="col-12 mt-2"><button type="button" class="btn btn-lg btn-outline-dark btn-lg px-4"
+            (click)="goToWorkspace()">Create new <strong>ReForm</strong><i class="bi bi-arrow-right ms-3"></i></button>
+    </div>
+</div>
+
+<div class="row d-flex position-absolute top-50 start-50 translate-middle text-center" *ngIf="getIsCompleted()">
+    <div class="col-12 p-0" style="height: 100px;"><i class="bi bi-check-circle text-success"
+            style="font-size: 80px;"></i></div>
+    <div class="col-12 mt-3 p-0">
+        <h1 class="display-4 fw-bold">This form is already completed!</h1>
+    </div>
+    <div class="col-12 mt-2"><button type="button" class="btn btn-lg btn-outline-dark btn-lg px-4"
+            (click)="goToWorkspace()">Create new <strong>ReForm</strong><i class="bi bi-arrow-right ms-3"></i></button>
+    </div>
+</div>

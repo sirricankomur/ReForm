@@ -1,0 +1,51 @@
+<div class="row d-flex align-items-center">
+    <app-is-required></app-is-required>
+    <div class="col-4 mt-4">
+        <select class="form-select form-select-sm" aria-label=".form-select-sm example" #selectMinScale
+            (change)="setMinScale(selectMinScale.value)">
+            <option selected value="{{getMinScale()}}" style="display: none;">{{getMinScale()}}</option>
+            <option value="0">0</option>
+            <option value="1">1</option>
+        </select>
+    </div>
+    <div class="col-1 mt-4 text-center px-0">
+        to
+    </div>
+    <div class="col-4 mt-4">
+        <select class="form-select form-select-sm" aria-label=".form-select-sm example" #selectMaxScale
+            (change)="setMaxScale(selectMaxScale.value)">
+            <option selected value="{{getMaxScale()}}" style="display: none;">{{getMaxScale()}}</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+        </select>
+    </div>
+    <span class="fw-bold mt-4" style="font-size: 14px; color: #1350b4;">Enter 0-24 characters.</span>
+    <div class="col-12 mt-2" *ngIf="getBeginningLabel() == null">
+        <input class="form-control form-control-sm" type="text" placeholder="Beginning label"
+            (change)="setBeginningLabel($event)" aria-label=".form-control-sm example">
+    </div>
+    <div class="col-12 mt-2" *ngIf="getBeginningLabel() != null">
+        <input class="form-control form-control-sm" type="text" value="{{getBeginningLabel()}}"
+            (change)="setBeginningLabel($event)" aria-label=".form-control-sm example">
+    </div>
+    <div class="col-12 mt-2" *ngIf="getMiddleLabel() == null">
+        <input class="form-control form-control-sm" type="text" placeholder="Middle label"
+            (change)="setMiddleLabel($event)" aria-label=".form-control-sm example">
+    </div>
+    <div class="col-12 mt-2" *ngIf="getMiddleLabel() != null">
+        <input class="form-control form-control-sm" type="text" value="{{getMiddleLabel()}}"
+            (change)="setMiddleLabel($event)" aria-label=".form-control-sm example">
+    </div>
+    <div class="col-12 mt-2" *ngIf="getEndLabel() == null">
+        <input class="form-control form-control-sm" type="text" placeholder="End label" (change)="setEndLabel($event)"
+            aria-label=".form-control-sm example">
+    </div>
+    <div class="col-12 mt-2" *ngIf="getEndLabel() != null">
+        <input class="form-control form-control-sm" type="text" value="{{getEndLabel()}}" (change)="setEndLabel($event)"
+            aria-label=".form-control-sm example">
+    </div>
+</div>

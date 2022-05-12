@@ -1,0 +1,57 @@
+<div class="bg-light vh-100">
+  <form  [formGroup]="loginForm"  (ngSubmit)="login()" class="row g-3 container position-absolute top-50 start-50 translate-middle"
+    style="width: 100%; max-width: 350px">
+    <a class="text-decoration-none link-dark text-center" style="font-weight: 700; font-size: 28px;" href="">ReForm</a>
+    <h1 class="h5 mt-3 mb-3 px-0 fw-normal text-center">
+      Hello, nice to see you!
+    </h1>
+    <div class="col-12">
+      <label for="inputEmail" class="form-label">Email</label>
+      <input formControlName="email" type="email" class="form-control" style="font-size: 14px" id="inputEmail"
+        placeholder="name@example.com" />
+        <small class="help-block text-danger d-flex align-items-center mt-1" *ngIf="loginForm.get('email').hasError('required') && loginForm.get('email').touched">
+          <svg class="me-1" xmlns="http://www.w3.org/2000/svg" height="16px" viewBox="0 0 24 24" width="16px"
+          fill="#dc3545">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
+          </svg>
+          Email is required!
+        </small>
+        <small class="help-block text-danger d-flex align-items-center mt-1" *ngIf="loginForm.get('email').hasError('email') && loginForm.get('email').touched">
+          <svg class="me-1" xmlns="http://www.w3.org/2000/svg" height="16px" viewBox="0 0 24 24" width="16px"
+          fill="#dc3545">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
+          </svg>
+          Enter correct email
+        </small>
+    </div>
+    <div class="col-12">
+      <label for="inputPassword" class="form-label">Password</label>
+      <input formControlName="password" type="password" class="form-control" style="font-size: 14px" id="inputPassword"
+        placeholder="Enter characters" />
+        <small class="help-block text-danger d-flex align-items-center mt-1" *ngIf="loginForm.get('password').hasError('required') && loginForm.get('password').touched">
+          <svg class="me-1" xmlns="http://www.w3.org/2000/svg" height="16px" viewBox="0 0 24 24" width="16px"
+          fill="#dc3545">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
+          </svg>
+          Password is required!
+        </small>
+        <small class="help-block text-danger d-flex align-items-center mt-1" *ngIf="loginForm.get('password').hasError('minlength') && loginForm.get('password').touched">
+          <svg class="me-1" xmlns="http://www.w3.org/2000/svg" height="16px" viewBox="0 0 24 24" width="16px"
+          fill="#dc3545">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
+          </svg>
+          Password must min 8 characters
+        </small>
+    </div>
+
+    <div class="form-text pt-1 text-dark">
+      Don't have an account?
+      <span><a routerLink="/register" class="link-dark">Sign up.</a></span>
+    </div>
+
+    <div class="d-grid mt-4">
+      <button class="btn btn-dark">Log in to ReForm</button>
+    </div>
+  </form>
+
+</div>

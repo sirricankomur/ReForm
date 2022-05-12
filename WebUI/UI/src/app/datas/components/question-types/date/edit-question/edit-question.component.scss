@@ -1,0 +1,25 @@
+.vertical-center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+
+  .dlex {
+    display:flex;
+  }
+  .div1 {
+    flex: 1 1 auto; /* dynamic width */
+    margin-left: 10px;
+  }
+  
+  .div2 {
+    flex: 0 0 auto;  /* fixed width */
+  }
+  
+  .dlex {
+    width:90%;
+    padding: 0 1em;
+    overflow:hidden;
+  }

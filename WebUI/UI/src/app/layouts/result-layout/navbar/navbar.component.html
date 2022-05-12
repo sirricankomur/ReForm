@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="sign-out" viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+            d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
+        <path fill-rule="evenodd"
+            d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+    </symbol>
+</svg>
+<header class="fixed-top border-bottom">
+    <div class="py-0 bg-white text-dark" style="height: 48px; max-height: 48px; width: 100%">
+        <div class="container-fluid mx-3">
+            <div class="d-flex flex-wrap align-items-center justify-content-between">
+                <a routerLink="workspace"
+                    class="text-center ms-4 fs-6 fw-bold link-dark text-decoration-none d-flex align-items-center position-absolute top-50 start-0 translate-middle-y">
+                    <svg class="me-2" xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="20px"
+                        fill="#000000">
+                        <path d="M0 0h24v24H0V0z" fill="none" opacity=".87" />
+                        <path d="M17.51 3.87L15.73 2.1 5.84 12l9.9 9.9 1.77-1.77L9.38 12l8.13-8.13z" />
+                    </svg>
+                    My workspace
+                    <span class="fw-normal" style="font-size: 14px"><span class="fw-bold ms-1">/</span>
+                        {{form.name}}</span></a>
+
+                <ul
+                    class="nav col-12 col-lg-auto my-0 py-0 my-md-0 text-small position-absolute top-50 start-50 translate-middle ">
+                    <li class="m-0 px-0 me-3">
+                        <a routerLink="form/{{form.id}}/create"
+                            class="nav-link text-dark d-flex align-items-center fw-bold px-0"
+                            style="font-size: 14px; height: 48px;">
+                            Create
+                        </a>
+                    </li>
+                    <li class="m-0 dropdown px-0 me-3">
+                        <button class="bg-transparent border-0 d-flex align-items-center fw-bold pe-0" type="button"
+                            id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"
+                            style="font-size: 14px; height: 48px; color: black;">
+                            <span class="d-flex">Share</span>
+                            <span>
+                                <svg claxmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24"
+                                    width="20px" fill="#000000">
+                                    <path d="M0 0h24v24H0V0z" fill="none" />
+                                    <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z" />
+                                </svg>
+                            </span>
+                        </button>
+                        <div class="dropdown-menu px-3 pt-3 shadow mt-2" aria-labelledby="dropdownMenuButton1"
+                            style="font-size: 14px; width: 360px; border-radius: 10px;">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <span class="fw-bold">Get the link</span>
+                                <i class="bi bi-share-fill ms-2"></i>
+                            </div>
+                            <div class="input-group my-3">
+                                <input type="text" class="form-control form-control-sm" [(ngModel)]="shareLink"
+                                    aria-label="Recipient's username" aria-describedby="button-addon2">
+                                <button class="btn btn-dark" type="button" id="button-addon2"
+                                    [cdkCopyToClipboard]="shareLink">Copy</button>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="m-0 px-0">
+                        <a class="nav-link text-dark d-flex align-items-center fw-bold px-0 border border-bottom rounded-0 border-2 border-dark"
+                            style="font-size: 14px; height: 48px;">
+                            Results
+                        </a>
+                    </li>
+                </ul>
+                <div class="dropdown text-end me-4 position-absolute top-50 end-0 translate-middle-y">
+                    <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
+                        id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-person-circle fs-3 me-2"></i>
+                        <strong>{{getUserName()}}</strong>
+                    </a>
+                    <ul class="dropdown-menu mx-0 shadow mt-2" style="width: 220px; border-radius: 8px;">
+                        <li *ngIf="isAdmin()">
+                            <a class="dropdown-item d-flex gap-2 align-items-center" href="#">
+                                <i class="bi bi-boxes"></i>
+                                Dashboard
+                            </a>
+                        </li>
+                        <li *ngIf="isAdmin()">
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <a class="dropdown-item dropdown-item-danger d-flex gap-2 align-items-center"
+                                (click)="signOut()">
+                                <svg class="bi" width="16" height="16">
+                                    <use xlink:href="#sign-out" />
+                                </svg>
+                                Sign out
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
