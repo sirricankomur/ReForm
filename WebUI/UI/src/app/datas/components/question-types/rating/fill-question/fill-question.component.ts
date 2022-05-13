@@ -10,6 +10,7 @@ import {
 } from '@angular/forms';
 import { LocalStorageService } from '@shared/services/local-storage/local-storage.service';
 import { SubmitService } from '@datas/services/submit/submit.service';
+import { PrevNextService } from '@shared/services/prev-next/prev-next.service';
 
 @Component({
   selector: 'app-fill-rating-question',
@@ -25,7 +26,7 @@ export class FillQuestionComponent implements OnInit {
 
   constructor(
     private localStorageService: LocalStorageService,
-    private submitService: SubmitService
+    private submitService: SubmitService, public prevNextService: PrevNextService
   ) {}
 
   ngOnInit(): void {

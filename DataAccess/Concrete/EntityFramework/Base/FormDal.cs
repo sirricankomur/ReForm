@@ -14,7 +14,10 @@ namespace DataAccess.Concrete.EntityFramework.Base
             using (var context = new MsSqlContext())
             {
                 var result = from form in context.Forms
-                    //join userResponse in context.UserResponses on form.Id equals userResponse.FormId
+
+                    //join question in context.Questions on formId equals question.FormId
+                    //join response in context.Responses on formId equals response.FormId
+                    //join formUser in context.FormUsers on formId equals formUser.FormId 
 
                              where form.Id == formId
                              select new Form { Id = form.Id, Name = form.Name, Questions = form.Questions, Responses = form.Responses, FormUsers = form.FormUsers};

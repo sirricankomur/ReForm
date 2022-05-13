@@ -560,7 +560,10 @@ export class ResponseCrudService {
     question: Question
   ) {
     let newResponse;
+    console.log("RESPONSE: ", service)
+
     service.getById(response.id).subscribe((responseDb) => {
+      console.log("RESPONSE: ", service, " ==> ", responseDb.data.responseId)
       let data = responseDb.data;
       this.formatDate(service, data);
       this.formatNumber(service, data);

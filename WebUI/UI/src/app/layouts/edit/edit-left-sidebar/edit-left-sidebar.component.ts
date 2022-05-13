@@ -54,6 +54,9 @@ export class EditLeftSidebarComponent implements OnInit {
   }
 
   delete(question: Question) {
+    this.form = this.localStorageService.getEditedForm();
+    console.log("this.form DB: ", this.form)
+
     this.questionService.getById(question.id).subscribe((responseQuestion) => {
       this.questionService.delete(responseQuestion.data).subscribe(() => {
         this.questionSortService.reorderAfterDeleted(
@@ -61,16 +64,31 @@ export class EditLeftSidebarComponent implements OnInit {
           responseQuestion.data.questionOrder,
           this.questions
         );
+        console.log("responseQuestion DB: ", responseQuestion.data)
 
         this.questions = this.questionSortService.sort(this.questions);
         this.form.questions = this.questions;
 
-        this.responseService.getAllByFormId(this.form.id).subscribe((responseDb) => {
-          this.form.responses = responseDb.data;
-        this.localStorageService.setEditedForm(this.form);
+        for (let i = 0; i < this.form.responses.length; i++) {
+          
+            if (this.form.responses[i].questionId == question.id) {
+              console.log(this.form.responses[i])
+              this.form.responses.splice(i, 1);
+              i--;
+              continue;
+            }
+          }
+          this.localStorageService.setEditedForm(this.form);
+        });
+        
+        
 
-        })
-      });
+        // this.responseService.getAllByFormId(this.form.id).subscribe((responseDb) => {
+        //   this.form.responses = responseDb.data;
+        //   console.log("RESPONSE DB: ", responseDb.data)
+        // this.localStorageService.setEditedForm(this.form);
+        // })
+      
     });
   }
 

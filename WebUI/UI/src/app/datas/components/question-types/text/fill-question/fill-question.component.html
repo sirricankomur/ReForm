@@ -31,7 +31,7 @@
   </div>
 
   <div class="mt-4 d-flex align-items-center" style="margin-left: 0px; width: fit-content;" *ngIf="!isLastQuestion()">
-    <button type="submit" class="btn fw-bold fs-5 py-1" [disabled]="!formGroup.valid"
+    <button type="submit" class="btn fw-bold fs-5 py-1" [disabled]="!formGroup.valid" (click)="prevNextService.next()"
       style="background-color: #1350b4; color: white; margin-left: 32px;">OK<i class="bi bi-check2 ms-2"></i></button>
     <small class="ms-3">Press <span class="fw-bold">'OK'</span> to save your response.</small>
   </div>

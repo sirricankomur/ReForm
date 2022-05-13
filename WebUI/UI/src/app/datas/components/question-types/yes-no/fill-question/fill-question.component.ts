@@ -10,6 +10,7 @@ import { Question } from '@datas/models/base/question';
 import { YesNoQuestion } from '@datas/models/question-types/yes-no-question';
 import { SubmitService } from '@datas/services/submit/submit.service';
 import { LocalStorageService } from '@shared/services/local-storage/local-storage.service';
+import { PrevNextService } from '@shared/services/prev-next/prev-next.service';
 import { QuestionSettingsService } from '@shared/services/question-settings/question-settings.service';
 import { ResponseCrudService } from '@shared/services/response-crud/response-crud.service';
 
@@ -30,7 +31,7 @@ export class FillQuestionComponent implements OnInit {
     private responseCrudService: ResponseCrudService,
     private router: Router,
     private submitService: SubmitService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService, public prevNextService: PrevNextService
   ) {}
 
   ngOnInit(): void {

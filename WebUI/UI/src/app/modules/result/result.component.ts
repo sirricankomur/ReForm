@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Question } from '@datas/models/base/question';
 import { Response } from '@datas/models/base/response';
+import { FormService } from '@datas/services/base/form/form.service';
 import { LocalStorageService } from '@shared/services/local-storage/local-storage.service';
 import { ResponseCrudService } from '@shared/services/response-crud/response-crud.service';
 import { QuestionTypesValidationService } from '@shared/services/validations/question-types-validation/question-types-validation.service';
@@ -15,10 +16,12 @@ export class ResultComponent implements OnInit {
   questions: Question[];
   response: Response;
   responses: Response[];
+  dataLoaded: boolean = false;
   public formResponses;
   constructor(
     private localStorageService: LocalStorageService,
     private responseCrudService: ResponseCrudService,
+    private formService: FormService,
     public questionTypesValidationService: QuestionTypesValidationService
   ) {
     this.formResponses = new Array();
@@ -40,7 +43,23 @@ export class ResultComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    
+    // if (this.localStorageService.getEditedForm().responses) {
+    //   this.dataLoaded = this.formResponses.length ==
+    //   this.localStorageService.getEditedForm().responses.length;
+      
+    // } else {
+    //   this.formService
+    //     .getById(this.localStorageService.getEditedForm().id)
+    //     .subscribe((responseDb) => {
+    //       this.localStorageService.setEditedForm(responseDb.data);
+    //       this.dataLoaded = this.formResponses.length ==
+    //   this.localStorageService.getEditedForm().responses.length;
+    //     });
+    // }
+
+  }
 
   getQuestions() {
     return this.localStorageService.getEditedForm().questions;
@@ -51,10 +70,8 @@ export class ResultComponent implements OnInit {
   }
 
   isDataLoaded() {
-    return (
-      this.formResponses.length ==
-      this.localStorageService.getEditedForm().responses.length
-    );
+   
+    return this.formResponses.length == this.localStorageService.getEditedForm().responses.length;
   }
 
   getResponses(userId: number) {

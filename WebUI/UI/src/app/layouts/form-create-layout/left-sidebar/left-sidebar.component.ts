@@ -235,12 +235,22 @@ export class LeftSidebarComponent implements OnInit {
   }
 
   private createMultipleChoiceDetails(question: any) {
-    let multipleChoiceDetail = new MultipleChoiceDetail(
+    console.log("DETAİL QUESTİ: ", question)
+    let multipleChoiceDetailOther = new MultipleChoiceDetail(
       question.id,
       0,
       'Other',
       true
     );
-    this.multipleChoiceDetailService.create(multipleChoiceDetail).subscribe();
+    this.multipleChoiceDetailService.create(multipleChoiceDetailOther).subscribe();
+
+    let multipleChoiceDetailChoice = new MultipleChoiceDetail(
+      question.id,
+      1,
+      '...',
+      true
+    );
+    
+    this.multipleChoiceDetailService.create(multipleChoiceDetailChoice).subscribe();
   }
 }

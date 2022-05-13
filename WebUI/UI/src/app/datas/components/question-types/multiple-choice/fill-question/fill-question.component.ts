@@ -3,6 +3,7 @@ import { Question } from '@datas/models/base/question';
 import { MultipleChoiceQuestion } from '@datas/models/question-types/multiple-choice-question';
 import { LocalStorageService } from '@shared/services/local-storage/local-storage.service';
 import { SubmitService } from '@datas/services/submit/submit.service';
+import { PrevNextService } from '@shared/services/prev-next/prev-next.service';
 
 @Component({
   selector: 'app-fill-multiple-choice-question',
@@ -21,7 +22,7 @@ export class FillQuestionComponent implements OnInit {
 
   constructor(
     private localStorageService: LocalStorageService,
-    private submitService: SubmitService
+    private submitService: SubmitService, public prevNextService: PrevNextService
   ) {}
 
   ngOnInit(): void {

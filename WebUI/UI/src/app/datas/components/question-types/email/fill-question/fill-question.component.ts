@@ -10,6 +10,7 @@ import {
 } from '@angular/forms';
 import { LocalStorageService } from '@shared/services/local-storage/local-storage.service';
 import { SubmitService } from '@datas/services/submit/submit.service';
+import { PrevNextService } from '@shared/services/prev-next/prev-next.service';
 
 @Component({
   selector: 'app-fill-email-question',
@@ -23,7 +24,7 @@ export class FillQuestionComponent implements OnInit {
   response: any;
   responses: any = [];
 
-  constructor(private localStorageService: LocalStorageService, private submitService: SubmitService) {}
+  constructor(private localStorageService: LocalStorageService, private submitService: SubmitService, public prevNextService: PrevNextService) {}
 
   ngOnInit(): void {
     this.responses = this.localStorageService.getResponses();

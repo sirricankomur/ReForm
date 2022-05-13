@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { QuestionSettingsService } from '@shared/services/question-settings/question-settings.service';
 import { Form } from '@datas/models/base/form';
 import { UserDto } from '@datas/models/dto/user-dto';
+import { PrevNextService } from '@shared/services/prev-next/prev-next.service';
 
 @Component({
   selector: 'app-form-fill-layout',
@@ -39,6 +40,7 @@ export class FormFillLayoutComponent implements OnInit {
     private localStorageService: LocalStorageService,
     private router: Router,
     private questionSettingsService: QuestionSettingsService,
+    public prevNextService: PrevNextService,
     public questionTypesValidationService: QuestionTypesValidationService
   ) {
     this.questionSettingsService.setAction('fill');
@@ -52,69 +54,8 @@ export class FormFillLayoutComponent implements OnInit {
     this.localStorageService.setRequiredQuestions(this.requiredQuestions);
   }
 
-  prev() {
-    this.filledQuestion = this.localStorageService.getFilledQuestion();
-    this.questionOrder = this.filledQuestion.questionOrder;
-    this.form = this.localStorageService.getFilledForm();
-    if (this.questionOrder != 1) {
-      let prevQuestion;
-      this.filledQuestionSettings =
-        this.localStorageService.getPrevQuestionSettings();
-      this.filledQuestion = this.getQuestions()[this.questionOrder - 2];
-      let nextQuestionSettings =
-        this.localStorageService.getFilledQuestionSettings();
 
-      this.questionOrder++;
-      this.progressPercentage =
-        (this.questionOrder * 100) / this.questionNumber;
-
-      if (this.questionOrder >= 4) {
-        prevQuestion = this.form.questions[this.questionOrder - 4];
-        this.questionSettingsService.setQuestionSettings(
-          prevQuestion,
-          this.localStorageService.setPrevQuestionSettings
-        );
-      }
-
-      this.localStorageService.setFilledQuestionSettings(
-        this.filledQuestionSettings
-      );
-      this.localStorageService.setNextQuestionSettings(nextQuestionSettings);
-    }
-    this.localStorageService.setFilledQuestion(this.filledQuestion);
-  }
-
-  next() {
-    this.filledQuestion = this.localStorageService.getFilledQuestion();
-    this.questionOrder = this.filledQuestion.questionOrder;
-    this.form = this.localStorageService.getFilledForm();
-
-    if (this.questionOrder != this.questionNumber) {
-      let prevQuestionSettings =
-        this.localStorageService.getFilledQuestionSettings();
-      this.filledQuestionSettings =
-        this.localStorageService.getNextQuestionSettings();
-      this.filledQuestion = this.getQuestions()[this.questionOrder];
-      let nextQuestion;
-
-      this.questionOrder++;
-      this.progressPercentage =
-        (this.questionOrder * 100) / this.questionNumber;
-      this.localStorageService.setPrevQuestionSettings(prevQuestionSettings);
-      this.localStorageService.setFilledQuestionSettings(
-        this.filledQuestionSettings
-      );
-
-      if (this.questionOrder != this.questionNumber) {
-        nextQuestion = this.form.questions[this.questionOrder];
-        this.questionSettingsService.setQuestionSettings(
-          nextQuestion,
-          this.localStorageService.setNextQuestionSettings
-        );
-      }
-    }
-    this.localStorageService.setFilledQuestion(this.filledQuestion);
-  }
+  
 
   getFormId() {
     let formUrl = this.router.url;
@@ -150,6 +91,7 @@ export class FormFillLayoutComponent implements OnInit {
       this.dataLoaded = true;
     });
   }
+  
 
   isQuestionNumber(number: number) {
     return this.getQuestions.length == number;

@@ -7,6 +7,7 @@ import { RankingChoiceSortService } from '@shared/services/ranking-choice-sort/r
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LocalStorageService } from '@shared/services/local-storage/local-storage.service';
 import { SubmitService } from '@datas/services/submit/submit.service';
+import { PrevNextService } from '@shared/services/prev-next/prev-next.service';
 
 @Component({
   selector: 'app-fill-ranking-question',
@@ -26,7 +27,7 @@ export class FillQuestionComponent implements OnInit {
     private rankingQuestionService: RankingQuestionService,
     private rankingChoiceSortService: RankingChoiceSortService,
     private localStorageService: LocalStorageService,
-    private submitService: SubmitService
+    private submitService: SubmitService, public prevNextService: PrevNextService
   ) {}
 
   ngOnInit(): void {
